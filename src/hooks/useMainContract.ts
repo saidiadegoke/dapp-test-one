@@ -31,7 +31,8 @@ export function useMainContract () {
     useEffect(() => {
         async function getValue () {
             if(!mainContract) return;
-            setContractData(null);
+            //const _contractData = {...contractData, counter_value: 0};
+            //setContractData(_contractData);
             const val = await mainContract.getData();
             const { number: contract_balance } = await mainContract.getBalance();
             setContractData({
@@ -40,8 +41,8 @@ export function useMainContract () {
                 owner_address: val.owner_address,
                 contract_balance 
             });
-            //await sleep(5000);
-            //getValue();
+            await sleep(5000);
+            getValue();
         }
         getValue();
     }, [mainContract]);
