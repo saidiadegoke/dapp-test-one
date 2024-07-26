@@ -1,0 +1,31 @@
+{
+  "hash": "c215b976",
+  "configHash": "828fb07c",
+  "lockfileHash": "96446cc8",
+  "browserHash": "ecb39b40",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "23386a9b",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "96097113",
+      "needsInterop": true
+    },
+    "@tonconnect/ui-react": {
+      "src": "../../node_modules/@tonconnect/ui-react/lib/index.mjs",
+      "file": "@tonconnect_ui-react.js",
+      "fileHash": "8bd2c59f",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-DVCWAFVK": {
+      "file": "chunk-DVCWAFVK.js"
+    }
+  }
+}

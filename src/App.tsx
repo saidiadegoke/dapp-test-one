@@ -1,34 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { TonConnectButton } from '@tonconnect/ui-react'
+import { useMainContract } from './hooks/useMainContract'
+import { useTonConnect } from './hooks/useTonConnect';
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const {
+    counter_value,
+    recent_address,
+    owner_address,
+    contract_address,
+    contract_balance,
+    sendIncrement,
+    sendWithdrawRequest
+  } = useMainContract();
+  const { connected } = useTonConnect();
   return (
-    <>
+    <div>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <TonConnectButton />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      <div>
+        <div className='card'>
+          <b>Contract Address: </b>
+          <div className='hint'>{contract_address?.slice(0, 30) + "..."}</div>
+          <b>Contract Balance:</b>
+          <div className='hint'>{contract_balance}</div>
+        </div>
+
+        <div className='card'>
+          <b>Counter Value:</b>
+          <div className='hint'>{counter_value ?? 'loading...'}</div>
+        </div>
+
+        {
+          connected && <a style={{cursor: "pointer"}} onClick={() => {
+            sendIncrement()
+          }}>Increment</a>
+        }
+
+<br /><br />
+         { connected && <a style={{cursor: "pointer"}} onClick={() => {
+            sendWithdrawRequest()
+          }}>Request Withdrawal</a>
+        }
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
